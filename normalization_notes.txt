@@ -1,0 +1,12 @@
+ORIGINAL, UNNORMALIZED DESIGN:
+All the data was stored in a single table which led to data redundancy. 
+For example, the same author and email appeared multiple times for each book they wrote. 
+
+STEPS TAKEN TO REACH 3NF:
+1NF: Split the original table into seperate tables to eliminate redundancy in rows.
+2NF: Removed partial dependencies by placing author information in a seperate Authors Table.
+3NF: Removed transitive dependencies by ensuring author details are only in the Authors Table.
+
+WHY THE JOIN TABLE WAS NEEDED:
+The join table prevents redundancy, which wouldn't be possible with just the two original tables 
+(the books and categories tables).
