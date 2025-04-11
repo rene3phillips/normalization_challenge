@@ -30,7 +30,7 @@ INSERT INTO books (title, isbn, publication_year, author_id)
 
 -- Query to verify
 SELECT b.title, b.isbn, b.publication_year, a.name, a.email
-FROM books b
+FROM books b -- Join the books table with the authors table using a foreign key
 JOIN authors a ON b.author_id = a.id;
 
 --  PART TWO
@@ -41,7 +41,7 @@ CREATE TABLE categories (
     name VARCHAR(100)
 );
 
--- Create 'book-categories' table
+-- Create 'book-categories' join table
 CREATE TABLE book_categories (
     book_id INTEGER REFERENCES books(id),
     category_id INTEGER REFERENCES categories(id),
@@ -69,14 +69,15 @@ INSERT INTO book_categories (book_id, category_id) VALUES (3, 2); -- dystopian
 INSERT INTO book_categories (book_id, category_id) VALUES (3, 3); -- fiction
 
 -- Queries to verify
-SELECT books.title, categories.name
-FROM books
+SELECT books.title, authors.name, categories.name
+FROM books -- Join the books table with book_categories and categories table
+JOIN authors ON books.author_id = authors.id
 JOIN book_categories ON books.id = book_categories.book_id
-JOIN categories ON categories.id = book_categories.category_id
+JOIN categories ON categories.id = book_categories.category_id;
 
-SELECT *
+SELECT books.title, authors.name, categories.name
 FROM books
-JOIN authors ON books.id = authors.id
+JOIN authors ON books.author_id = authors.id
 JOIN book_categories ON books.id = book_categories.book_id
-JOIN categories ON books.id = categories.id
-
+JOIN categories ON book_categories.category_id = categories.id
+WHERE authors.name = 'F. Scott Fitzgerald';
