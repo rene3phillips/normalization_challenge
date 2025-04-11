@@ -70,7 +70,7 @@ INSERT INTO book_categories (book_id, category_id) VALUES (3, 3); -- fiction
 
 -- Queries to verify
 SELECT books.title, authors.name, categories.name
-FROM books -- Join the books table with book_categories and categories table
+FROM books 
 JOIN authors ON books.author_id = authors.id
 JOIN book_categories ON books.id = book_categories.book_id
 JOIN categories ON categories.id = book_categories.category_id;
